@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="navbar">
+<a href="{{ url_for('logout') }}">logout</a>
+</div>
+
+<div style="padding: 16px">
+    <p class="aarhead">User: {{ user }},&nbsp;&nbsp;&nbsp;&nbsp;{{ title }}</p>
+    <p>Here are the jobs in the database:</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes"><img style="float:left; width: 18px; margin:auto; padding-right: 40px" class='dispatch-closeme' src="static/images/close.png" />
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+    <div id="jobs-table-div">
+        <table id="jobs-table" class="tablesorter">
+            <thead>
+                <tr><th id='jid'>job<br>ID</th><th id='cid'>cust<br>ID</th><th id='lname'>Last Name</th><th id='make'>Make</th><th id='appliance'>Appliance</th><th id='job_status'>Job Status</th><th id='appointment'>Appointment</th><th id='description'>Description</th>
+                </tr>
+            </thead>
+            <tbody id="result">        
+            {% for row in result %}
+                <tr id="{{ loop.index }} "class="{{ loop.cycle('odd', 'even') }}">
+                {% for cell in row %}
+                    {% if loop.index == 6 %}
+                    <td class="job_status">{{ cell }}</td>
+                    {% elif loop.index == 7 %}
+                    <td class="job_date">{{ cell }}</td>
+                    {% else %}
+                    <td>{{ cell }}</td>
+                    {% endif %}
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="update">&nbsp;</div>
+    {% if error %}
+        <div><img class='closeme' src="static/images/close.png" /><strong>Error:</strong> {{ error }}</div>
+    {% endif %}
+
+</div>
+{% endblock %}

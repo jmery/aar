@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'AAR.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'sorter-blue/style.css') }}" />
+<script type="text/javascript">$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.tablesorter.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/AAR.js') }}"></script>
+<title>AWESOME Appliance Repair</title>
+</head>
+<div id="container">
+<div id="header"><img src="{{ url_for('static', filename = 'images/aar_logo1.png')}}" alt="aar_logo1" /></div>
+{% block body %}{% endblock %}
+<div id="footer"></div>
+</div>
